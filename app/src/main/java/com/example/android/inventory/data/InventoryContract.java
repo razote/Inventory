@@ -13,13 +13,13 @@ public class InventoryContract {
 
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_INVENTORY);
 
-        public static final String TABLE_NAME = "pets";
+        public static final String TABLE_NAME = "inventory";
 
         public static final String _ID = BaseColumns._ID;
-        public static final String COLUMN_PET_NAME = "name";
-        public static final String COLUMN_PET_BREED = "breed";
-        public static final String COLUMN_PET_GENDER = "gender";
-        public static final String COLUMN_PET_WEIGHT = "weight";
+        public static final String COLUMN_INVENTORY_NAME = "name";
+        public static final String COLUMN_INVENTORY_IMG_DIR = "image_dir";
+        public static final String COLUMN_INVENTORY_QUANTITY = "quantity";
+        public static final String COLUMN_INVENTORY_PRICE = "price";
 
         public static final int GENDER_UNKNOWN = 0;
         public static final int GENDER_MALE = 1;

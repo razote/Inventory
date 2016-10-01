@@ -154,10 +154,10 @@ public class EditorActivity extends AppCompatActivity implements
         // Create a ContentValues object where column names are the keys,
         // and pet attributes from the editor are the values.
         ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_PET_NAME, nameString);
-        values.put(InventoryEntry.COLUMN_PET_BREED, breedString);
-        values.put(InventoryContract.InventoryEntry.COLUMN_PET_GENDER, mGender);
-        values.put(InventoryContract.InventoryEntry.COLUMN_PET_WEIGHT, weight);
+        values.put(InventoryEntry.COLUMN_INVENTORY_NAME, nameString);
+        values.put(InventoryEntry.COLUMN_INVENTORY_IMG_DIR, breedString);
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY, mGender);
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE, weight);
 
         if (mCurrentPetUri == null) {
 
@@ -352,10 +352,10 @@ public class EditorActivity extends AppCompatActivity implements
         // all columns from the pet table
         String[] projection = {
                 InventoryEntry._ID,
-                InventoryEntry.COLUMN_PET_NAME,
-                InventoryEntry.COLUMN_PET_BREED,
-                InventoryContract.InventoryEntry.COLUMN_PET_GENDER,
-                InventoryEntry.COLUMN_PET_WEIGHT };
+                InventoryEntry.COLUMN_INVENTORY_NAME,
+                InventoryEntry.COLUMN_INVENTORY_IMG_DIR,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY,
+                InventoryEntry.COLUMN_INVENTORY_PRICE};
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -377,10 +377,10 @@ public class EditorActivity extends AppCompatActivity implements
         // (This should be the only row in the cursor)
         if (cursor.moveToFirst()) {
             // Find the columns of pet attributes that we're interested in
-            int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PET_NAME);
-            int breedColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PET_BREED);
-            int genderColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PET_GENDER);
-            int weightColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PET_WEIGHT);
+            int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_NAME);
+            int breedColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_IMG_DIR);
+            int genderColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_QUANTITY);
+            int weightColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);

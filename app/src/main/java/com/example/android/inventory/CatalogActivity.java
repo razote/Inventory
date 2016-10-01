@@ -72,10 +72,10 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_PET_NAME, "Toto");
-        values.put(InventoryEntry.COLUMN_PET_BREED, "Terrier");
-        values.put(InventoryEntry.COLUMN_PET_GENDER, InventoryContract.InventoryEntry.GENDER_MALE);
-        values.put(InventoryEntry.COLUMN_PET_WEIGHT, 7);
+        values.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Toto");
+        values.put(InventoryEntry.COLUMN_INVENTORY_IMG_DIR, "Terrier");
+        values.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, InventoryContract.InventoryEntry.GENDER_MALE);
+        values.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 7);
 
         // Insert a new row for Toto into the provider using the ContentResolver.
         // Use the {@link InventoryEntry#CONTENT_URI} to indicate that we want to insert
@@ -117,8 +117,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         String[] projection = {
                 InventoryEntry._ID,
-                InventoryContract.InventoryEntry.COLUMN_PET_NAME,
-                InventoryEntry.COLUMN_PET_BREED
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME,
+                InventoryEntry.COLUMN_INVENTORY_IMG_DIR
         };
 
         return new CursorLoader(this,

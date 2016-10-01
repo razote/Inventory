@@ -93,18 +93,18 @@ public class InventoryProvider extends ContentProvider {
 
     private Uri insertPet(Uri uri, ContentValues values) {
         // Check that the name is not null
-        String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_PET_NAME);
+        String name = values.getAsString(InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME);
         if (name == null) {
             throw new IllegalArgumentException("Pet requires a name");
         }
 
-        Integer gender = values.getAsInteger(InventoryEntry.COLUMN_PET_GENDER);
+        Integer gender = values.getAsInteger(InventoryEntry.COLUMN_INVENTORY_QUANTITY);
         if (gender == null || !InventoryEntry.isValidGender(gender)) {
             throw new IllegalArgumentException("Pet requires valid gender");
         }
 
         // If the weight is provided, check that it's greater than or equal to 0 kg
-        Integer weight = values.getAsInteger(InventoryEntry.COLUMN_PET_WEIGHT);
+        Integer weight = values.getAsInteger(InventoryEntry.COLUMN_INVENTORY_PRICE);
         if (weight != null && weight < 0) {
             throw new IllegalArgumentException("Pet requires valid weight");
         }
@@ -146,29 +146,29 @@ public class InventoryProvider extends ContentProvider {
     }
 
     private int updatePet(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // If the {@link InventoryEntry#COLUMN_PET_NAME} key is present,
+        // If the {@link InventoryEntry#COLUMN_INVENTORY_NAME} key is present,
         // check that the name value is not null.
-        if (values.containsKey(InventoryEntry.COLUMN_PET_NAME)) {
-            String name = values.getAsString(InventoryEntry.COLUMN_PET_NAME);
+        if (values.containsKey(InventoryEntry.COLUMN_INVENTORY_NAME)) {
+            String name = values.getAsString(InventoryEntry.COLUMN_INVENTORY_NAME);
             if (name == null) {
                 throw new IllegalArgumentException("Pet requires a name");
             }
         }
 
-        // If the {@link InventoryEntry#COLUMN_PET_GENDER} key is present,
+        // If the {@link InventoryEntry#COLUMN_INVENTORY_QUANTITY} key is present,
         // check that the gender value is valid.
-        if (values.containsKey(InventoryEntry.COLUMN_PET_GENDER)) {
-            Integer gender = values.getAsInteger(InventoryEntry.COLUMN_PET_GENDER);
+        if (values.containsKey(InventoryEntry.COLUMN_INVENTORY_QUANTITY)) {
+            Integer gender = values.getAsInteger(InventoryEntry.COLUMN_INVENTORY_QUANTITY);
             if (gender == null || !InventoryEntry.isValidGender(gender)) {
                 throw new IllegalArgumentException("Pet requires valid gender");
             }
         }
 
-        // If the {@link InventoryEntry#COLUMN_PET_WEIGHT} key is present,
+        // If the {@link InventoryEntry#COLUMN_INVENTORY_PRICE} key is present,
         // check that the weight value is valid.
-        if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_PET_WEIGHT)) {
+        if (values.containsKey(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE)) {
             // Check that the weight is greater than or equal to 0 kg
-            Integer weight = values.getAsInteger(InventoryEntry.COLUMN_PET_WEIGHT);
+            Integer weight = values.getAsInteger(InventoryEntry.COLUMN_INVENTORY_PRICE);
             if (weight != null && weight < 0) {
                 throw new IllegalArgumentException("Pet requires valid weight");
             }

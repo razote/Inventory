@@ -57,7 +57,9 @@
                 android:hint="@string/hint_pet_breed"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- Quantity category -->
@@ -80,17 +82,17 @@
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-
         <EditText
                 android:id="@+id/edit_inventory_quantity"
                 android:hint="@string/hint_pet_name"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
         </LinearLayout>
+
     </LinearLayout>
 
-    <!-- Measurement category -->
+    <!-- Price category -->
     <LinearLayout
         android:id="@+id/container_measurement"
         android:layout_width="match_parent"
@@ -111,17 +113,13 @@
 
             <!-- Weight field -->
             <EditText
-                android:id="@+id/edit_pet_weight"
+                android:id="@+id/edit_inventory_price"
                 android:hint="@string/hint_pet_weight"
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
-            <!-- Units for weight (kg) -->
-            <!--<TextView-->
-                <!--android:id="@+id/label_weight_units"-->
-                <!--android:text="@string/unit_pet_weight"-->
-                <!--style="@style/EditorUnitsStyle"/>-->
         </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -130,6 +128,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/camera_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

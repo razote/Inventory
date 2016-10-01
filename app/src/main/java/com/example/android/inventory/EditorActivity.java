@@ -23,7 +23,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.android.inventory.data.InventoryContract.PetEntry;
+import com.example.android.inventory.data.InventoryContract;
+import com.example.android.inventory.data.InventoryContract.InventoryEntry;
 
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -117,11 +118,11 @@ public class EditorActivity extends AppCompatActivity implements
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     if (selection.equals(getString(R.string.gender_male))) {
-                        mGender = PetEntry.GENDER_MALE; // Male
+                        mGender = InventoryEntry.GENDER_MALE; // Male
                     } else if (selection.equals(getString(R.string.gender_female))) {
-                        mGender = PetEntry.GENDER_FEMALE; // Female
+                        mGender = InventoryEntry.GENDER_FEMALE; // Female
                     } else {
-                        mGender = PetEntry.GENDER_UNKNOWN; // Unknown
+                        mGender = InventoryContract.InventoryEntry.GENDER_UNKNOWN; // Unknown
                     }
                 }
             }
@@ -143,7 +144,7 @@ public class EditorActivity extends AppCompatActivity implements
 
         if (mCurrentPetUri == null &&
                 TextUtils.isEmpty(nameString) && TextUtils.isEmpty(breedString) &&
-                TextUtils.isEmpty(weightString) && mGender == PetEntry.GENDER_UNKNOWN) {return;}
+                TextUtils.isEmpty(weightString) && mGender == InventoryEntry.GENDER_UNKNOWN) {return;}
 
         int weight = 0;
         if (!TextUtils.isEmpty(weightString)) {
@@ -153,15 +154,15 @@ public class EditorActivity extends AppCompatActivity implements
         // Create a ContentValues object where column names are the keys,
         // and pet attributes from the editor are the values.
         ContentValues values = new ContentValues();
-        values.put(PetEntry.COLUMN_PET_NAME, nameString);
-        values.put(PetEntry.COLUMN_PET_BREED, breedString);
-        values.put(PetEntry.COLUMN_PET_GENDER, mGender);
-        values.put(PetEntry.COLUMN_PET_WEIGHT, weight);
+        values.put(InventoryEntry.COLUMN_PET_NAME, nameString);
+        values.put(InventoryEntry.COLUMN_PET_BREED, breedString);
+        values.put(InventoryContract.InventoryEntry.COLUMN_PET_GENDER, mGender);
+        values.put(InventoryContract.InventoryEntry.COLUMN_PET_WEIGHT, weight);
 
         if (mCurrentPetUri == null) {
 
             // Insert a new pet into the provider, returning the content URI for the new pet.
-            Uri newUri = getContentResolver().insert(PetEntry.CONTENT_URI, values);
+            Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
 
             // Show a toast message depending on whether or not the insertion was successful
             if (newUri == null) {
@@ -350,11 +351,11 @@ public class EditorActivity extends AppCompatActivity implements
         // Since the editor shows all pet attributes, define a projection that contains
         // all columns from the pet table
         String[] projection = {
-                PetEntry._ID,
-                PetEntry.COLUMN_PET_NAME,
-                PetEntry.COLUMN_PET_BREED,
-                PetEntry.COLUMN_PET_GENDER,
-                PetEntry.COLUMN_PET_WEIGHT };
+                InventoryEntry._ID,
+                InventoryEntry.COLUMN_PET_NAME,
+                InventoryEntry.COLUMN_PET_BREED,
+                InventoryContract.InventoryEntry.COLUMN_PET_GENDER,
+                InventoryEntry.COLUMN_PET_WEIGHT };
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -376,10 +377,10 @@ public class EditorActivity extends AppCompatActivity implements
         // (This should be the only row in the cursor)
         if (cursor.moveToFirst()) {
             // Find the columns of pet attributes that we're interested in
-            int nameColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_NAME);
-            int breedColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_BREED);
-            int genderColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_GENDER);
-            int weightColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_WEIGHT);
+            int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PET_NAME);
+            int breedColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PET_BREED);
+            int genderColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PET_GENDER);
+            int weightColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PET_WEIGHT);
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
@@ -396,10 +397,10 @@ public class EditorActivity extends AppCompatActivity implements
             // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).
             // Then call setSelection() so that option is displayed on screen as the current selection.
             switch (gender) {
-                case PetEntry.GENDER_MALE:
+                case InventoryEntry.GENDER_MALE:
                     mGenderSpinner.setSelection(1);
                     break;
-                case PetEntry.GENDER_FEMALE:
+                case InventoryEntry.GENDER_FEMALE:
                     mGenderSpinner.setSelection(2);
                     break;
                 default:

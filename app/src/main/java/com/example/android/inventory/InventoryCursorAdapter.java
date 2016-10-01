@@ -29,8 +29,8 @@ public class InventoryCursorAdapter extends CursorAdapter {
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
 
-        int nameColumnIndex = cursor.getColumnIndex(InventoryContract.PetEntry.COLUMN_PET_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(InventoryContract.PetEntry.COLUMN_PET_BREED);
+        int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PET_NAME);
+        int breedColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_PET_BREED);
 
         final String petName = cursor.getString(nameColumnIndex);
         String petBreed = cursor.getString(breedColumnIndex);

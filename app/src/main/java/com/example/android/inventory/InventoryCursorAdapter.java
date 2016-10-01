@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.inventory.data.InventoryContract;
+
+import java.text.NumberFormat;
 
 public class InventoryCursorAdapter extends CursorAdapter {
 
@@ -26,21 +29,28 @@ public class InventoryCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
+        TextView quantityTextView = (TextView) view.findViewById(R.id.quantity);
+        TextView priceTextView = (TextView) view.findViewById(R.id.price);
 
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMG_DIR);
+        int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY);
+        int priceColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
 
         final String petName = cursor.getString(nameColumnIndex);
-        String petBreed = cursor.getString(breedColumnIndex);
+        int quantity = cursor.getInt(quantityColumnIndex);
+        int price = cursor.getInt(priceColumnIndex);
 
-        if (TextUtils.isEmpty(petBreed)) {
-            petBreed = context.getString(R.string.unknown_breed);
-        }
+
+//        if (TextUtils.isEmpty(quantity)) {
+//            quantity = context.getString(R.string.unknown_breed);
+//        }
 
         nameTextView.setText(petName);
-        summaryTextView.setText(petBreed);
+        quantityTextView.setText("Quantity: " + String.valueOf(quantity));
+        priceTextView.setText(format.format(price));
 
         Button btn = (Button) view.findViewById(R.id.click);
         btn.setOnClickListener(new View.OnClickListener() {

@@ -22,7 +22,7 @@
             android:textColor="#2B3D4D"  />
 
         <TextView
-            android:id="@+id/summary"
+            android:id="@+id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -30,6 +30,14 @@
             android:textColor="#AEB6BD"  />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/click"

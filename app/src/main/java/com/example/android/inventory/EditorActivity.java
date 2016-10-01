@@ -25,22 +25,15 @@ import android.widget.Toast;
 
 import com.example.android.inventory.data.InventoryContract.PetEntry;
 
-/**
- * Allows user to create a new pet or edit an existing one.
- */
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** EditText field to enter the pet's name */
     private EditText mNameEditText;
 
-    /** EditText field to enter the pet's breed */
     private EditText mBreedEditText;
 
-    /** EditText field to enter the pet's weight */
     private EditText mWeightEditText;
 
-    /** EditText field to enter the pet's gender */
     private Spinner mGenderSpinner;
 
     /**
@@ -105,9 +98,6 @@ public class EditorActivity extends AppCompatActivity implements
 
     }
 
-    /**
-     * Setup the dropdown spinner that allows the user to select the gender of the pet.
-     */
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
@@ -144,9 +134,6 @@ public class EditorActivity extends AppCompatActivity implements
         });
     }
 
-    /**
-     * Get user input from editor and save new pet into database.
-     */
     private void savePet() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
@@ -289,9 +276,6 @@ public class EditorActivity extends AppCompatActivity implements
         alertDialog.show();
     }
 
-    /**
-     * Perform the deletion of the pet in the database.
-     */
     private void deletePet() {
         // Only perform the delete if this is an existing pet.
         if (mCurrentPetUri != null) {

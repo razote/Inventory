@@ -67,9 +67,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     }
 
-    /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
-     */
     private void insertPet() {
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
@@ -110,9 +107,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Helper method to delete all pets in the database.
-     */
     private void deleteAllPets() {
         int rowsDeleted = getContentResolver().delete(PetEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
